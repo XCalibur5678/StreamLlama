@@ -1,17 +1,17 @@
 #!/bin/bash
 echo "Running preload.sh"
 
-# Function to check if Ollama is installed and if llava:v1.6 is installed
+# Function to check if Ollama is installed and if phi3 is installed
 function check_ollama_installed {
     if command -v ollama &> /dev/null
     then
         echo "Ollama is already installed"
-        if ollama list | grep -q "llava:v1.6"
+        if ollama list | grep -q "phi3"
         then
-            echo "Llava:v1.6 already installed"
+            echo "phi3 already installed"
             return 0
         else
-            echo "Llava:v1.6 is not installed"
+            echo "phi3 is not installed"
             return 1
         fi
     else
@@ -71,7 +71,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sudo systemctl start ollama
     fi
     if [ $status -ne 0 ]; then
-        ollama pull llava:v1.6
+        ollama pull phi3
     fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     check_ollama_installed
@@ -82,7 +82,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         sudo launchctl load /Library/LaunchDaemons/com.ollama.ollama.plist
     fi
     if [ $status -ne 0 ]; then
-        ollama pull llava:v1.6
+        ollama pull phi3
     fi
 else
     echo "Unsupported OS. Please install Ollama manually."

@@ -1,8 +1,23 @@
 import streamlit as st
 import ollama
+import sys,subprocess
+
+os = sys.platform
+if os == "win32":
+    subprocess.run("powershell -ExecutionPolicy Bypass -File ./preload.ps1", shell=True, check=True)
+    subprocess.run("./preload.ps1", shell=True, check=True)
+elif os == "linux":
+    subprocess.run("chmod +x ./preload.sh", shell=True, check=True)
+    subprocess.run("./preload.sh", shell=True, check=True)
+elif os == "darwin":
+    subprocess.run("chmod +x ./preload.sh", shell=True, check=True)
+    subprocess.run("./preload.sh", shell=True, check=True)
+else:
+    print("Unsupported OS")
+    sys.exit(1)
 
 st.title("StreamLlama")
-
+st.markdown("### A Streamlit app for Ollama")
 # init chat history
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
@@ -21,13 +36,9 @@ st.session_state["model"] = st.selectbox("Choose your model", models)
 
 #Sidebar
 with st.sidebar:
-    st.markdown("### Settings")
-
     st.write("### Reset Chat history")
-
     if st.button("Reset chat"):
         st.session_state["messages"] = []
-
 
 # Stream chat messages
 def model_res_generator():

@@ -11,14 +11,14 @@ function Check-OllamaInstalled {
     }
 }
 
-# Function to check if llava:v1.6 is installed
+# Function to check if phi3 is installed
 function Check-LlavaInstalled {
-    $llavaVersion = ollama list | Select-String "llava:v1.6"
+    $llavaVersion = ollama list | Select-String "phi3"
     if ($llavaVersion) {
-        Write-Output "llava:v1.6 is already installed"
+        Write-Output "phi3 is already installed"
         return $true
     } else {
-        Write-Output "llava:v1.6 is not installed"
+        Write-Output "phi3 is not installed"
         return $false
     }
 }
@@ -41,5 +41,5 @@ if (-not (Check-OllamaInstalled)) {
 }
 
 if (-not (Check-LlavaInstalled)) {
-    ollama pull llava:v1.6
+    ollama pull phi3
 }
