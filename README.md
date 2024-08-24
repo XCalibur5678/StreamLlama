@@ -1,9 +1,12 @@
 
+
+
 # StreamLlama
 
 A Python script that serves as a standalone Streamlit wrapper for Ollama.
 
 ## Installation
+Video Demo : https://youtu.be/4QTL_lFeVTE
 
 To install the required dependencies, run the following command in your terminal:
 

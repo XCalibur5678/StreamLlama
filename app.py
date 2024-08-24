@@ -1,20 +1,5 @@
 import streamlit as st
 import ollama
-import sys,subprocess
-
-os = sys.platform
-if os == "win32":
-    subprocess.run("powershell -ExecutionPolicy Bypass -File ./preload.ps1", shell=True, check=True)
-    subprocess.run("./preload.ps1", shell=True, check=True)
-elif os == "linux":
-    subprocess.run("chmod +x ./preload.sh", shell=True, check=True)
-    subprocess.run("./preload.sh", shell=True, check=True)
-elif os == "darwin":
-    subprocess.run("chmod +x ./preload.sh", shell=True, check=True)
-    subprocess.run("./preload.sh", shell=True, check=True)
-else:
-    print("Unsupported OS")
-    sys.exit(1)
 
 st.title("StreamLlama")
 st.markdown("### A Streamlit app for Ollama")
